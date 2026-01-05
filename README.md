@@ -72,3 +72,16 @@ Version: 1.0.0
 const [enrollments, setEnrollments] = useState<any[]>([])
 cone stos cambios puedo reemplazar el <any[]> por <Enrollment> y asi arreglo algunos anys q estaban en el archivo
 5) creo un hook custom para guardar todos los estados e incluso el useEffect que consume el enrollments.ts
+6) muevo en un componente EnrollmentTable -> 
+interface EnrollmentsTableProps {
+  enrollments: Enrollment[]
+  onConfirm: (id: string) => void
+}
+
+y estaban las funciones de los colores en App.jsx y se paso a un solo componente para q no quede expuesto y los status fueron previamente definidos en el types.ts
+
+7) otro componente el TextFilter creado para podes dividir el filtrado de estados
+8) any a la medida  q se refactorizaba se cambiaron algunos anys usando el Enrollment definido en el types.ts
+9) se agrego el buscador base en el componente de TextFilter . La logica del filter esta en la logica del custom hook
+Claude Ai me guio en algunos pasos para poder entender en donde buscar lo que necesitaba modficar + busqueda de errores q me aparecian en al consola y tuve problemas cuando empece a mover los componetes 
+
