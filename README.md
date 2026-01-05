@@ -58,3 +58,9 @@ For licensing inquiries or permissions, please contact:
 
 Last Modified: January 2025
 Version: 1.0.0
+
+
+## Comentarios
+1) Falta agregar enrollments en las dependencias -> useEffect
+2) Al querer crear el nuevo enrollment me tiraba un error no especifico - revision en el formulario de NewEnrollmentForm y gracias a claude me explico que habia este tipo de dato  ->  created_at: new Date().toISOString() que interferia en el Apps,tsx         <TableCell>{enrollment.created_at.toLocaleDateString()}</TableCell> -> esto antes llamaba mal al tipo de dato = Los datos mock usan Date pero el formulario usa toISOString() (string).
+3) hay un concepto de inmutabilidad o esta el problema de que se usaba un mismo array y generaba conflicto de alguna forma porq react piensa que es el mismo array pero no se tiene q crear uno nuevo

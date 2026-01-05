@@ -38,7 +38,7 @@ function App() {
     }
 
     setFilteredEnrollments(result)
-  }, [statusFilter])
+  }, [statusFilter , enrollments])
 
   useEffect(() => {
     setLoading(true)
@@ -53,11 +53,12 @@ function App() {
   }
 
   const confirmEnrollment = (id: string) => {
-    const index = enrollments.findIndex((e: any) => e.id === id)
-    if (index === -1) return
+    setEnrollments( prevEnrollments =>
+      prevEnrollments.map( enrollment =>
+        enrollment.id === id ? { ...enrollment, status: 'confirmed' } : enrollment
+      )
+    )
 
-    enrollments[index].status = 'confirmed'
-    setEnrollments(enrollments)
   }
 
   if (loading) return (
@@ -126,7 +127,10 @@ function App() {
                                   size="small"
                                 />
                               </TableCell>
-                              <TableCell>{enrollment.created_at.toLocaleDateString()}</TableCell>
+                              <TableCell>   {enrollment.created_at instanceof Date
+                                  ? enrollment.created_at.toLocaleDateString()
+                                  : new Date(enrollment.created_at).toLocaleDateString()}
+                              </TableCell>
                               <TableCell>
                                 {enrollment.status === 'pending' && (
                                   <Button
